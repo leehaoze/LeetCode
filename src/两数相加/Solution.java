@@ -91,4 +91,16 @@ public class Solution {
 
         return head;
     }
+<<<<<<< HEAD
+=======
+
+    private int getLengthOfList(ListNode head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+>>>>>>> 605f1bfeac621b5ced241fca22b2f84eda0133e6
 }
