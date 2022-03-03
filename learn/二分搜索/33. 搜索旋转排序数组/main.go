@@ -74,28 +74,55 @@ import "fmt"
 // }
 
 // ------------- step 解2 -------------
-func search(nums []int, target int) int {
-	if len(nums) == 1 {
-		if nums[0] == target {
-			return 0
-		} else {
-			return -1
-		}
-	}
+// func search(nums []int, target int) int {
+// 	if len(nums) == 1 {
+// 		if nums[0] == target {
+// 			return 0
+// 		} else {
+// 			return -1
+// 		}
+// 	}
+//
+// 	left, right := 0, len(nums)-1
+// 	for left <= right {
+// 		mid := left + (right-left)/2
+// 		if nums[mid] == target {
+// 			return mid
+// 		}
+// 		if nums[0] <= nums[mid] { // 左侧有序
+// 			if nums[0] <= target && nums[mid] > target {
+// 				right = mid - 1
+// 			} else {
+// 				left = mid + 1
+// 			}
+// 		} else { // 右侧有序
+// 			if nums[mid] < target && nums[len(nums)-1] >= target {
+// 				left = mid + 1
+// 			} else {
+// 				right = mid - 1
+// 			}
+// 		}
+// 	}
+//
+// 	return -1
+// }
 
+// 2022-03-03 再一次做
+// 4,5,6,7,0,1,2
+func search(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 	for left <= right {
-		mid := left + (right-left)/2
+		mid := left + (right-left)>>1
 		if nums[mid] == target {
 			return mid
 		}
-		if nums[0] <= nums[mid] { // 左侧有序
-			if nums[0] <= target && nums[mid] > target {
-				right = mid - 1
-			} else {
+		if nums[0] <= nums[mid] { // 左侧有序 mid落入左半部分
+			if nums[mid] < target || nums[0] > target {
 				left = mid + 1
+			} else {
+				right = mid - 1
 			}
-		} else { // 右侧有序
+		} else { // 右侧有序 mid落入右半部分
 			if nums[mid] < target && nums[len(nums)-1] >= target {
 				left = mid + 1
 			} else {
