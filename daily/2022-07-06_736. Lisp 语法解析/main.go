@@ -29,18 +29,21 @@ func cal(expression string, scope map[string]int) int {
 	if token[0] == "let" {
 		// let 从idx=1开始是赋值表达式，最后一个是运算表达式
 		for i := 1; i < len(token)-2; i += 2 {
-			scope[token[i]] = cal(token[i+1], clone(scope))
+			if _, exists := scope[token[i]]; exists {
+				scope = clone(scope)
+			}
+			scope[token[i]] = cal(token[i+1], scope)
 		}
 		// fmt.Println("expr: ", token[len(token)-1])
-		return cal(token[len(token)-1], clone(scope))
+		return cal(token[len(token)-1], scope)
 	} else if token[0] == "mult" {
-		a := cal(token[1], clone(scope))
-		b := cal(token[2], clone(scope))
+		a := cal(token[1], scope)
+		b := cal(token[2], scope)
 		// fmt.Println(fmt.Sprintf("mult %v * %v", a, b))
 		return a * b
 	} else if token[0] == "add" {
-		a := cal(token[1], clone(scope))
-		b := cal(token[2], clone(scope))
+		a := cal(token[1], scope)
+		b := cal(token[2], scope)
 		// fmt.Println(fmt.Sprintf("add %v + %v", a, b))
 		return a + b
 	} else {
