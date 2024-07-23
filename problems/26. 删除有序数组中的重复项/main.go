@@ -1,25 +1,26 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
+// 0, 1, 1, 2, 3
 func removeDuplicates(nums []int) int {
 	left, right := 0, 0
+
 	for right < len(nums) {
-		nums[left] = nums[right]
-		for right+1 < len(nums) && nums[right+1] == nums[left] {
-			right++
+		if left-1 < 0 || nums[left-1] != nums[right] {
+			nums[left] = nums[right]
+			left++
 		}
-		left++
+
 		right++
+		// fmt.Println(nums)
 	}
-	for i := 0; i < left; i++ {
-		fmt.Println(nums[i])
-	}
+
+	// fmt.Println(nums)
 	return left
 }
 
 func main() {
-	fmt.Println(removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
+	ret := removeDuplicates([]int{1, 1, 2})
+	fmt.Println(ret)
 }
