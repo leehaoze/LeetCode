@@ -15,12 +15,12 @@ f(1110) + f(6)
 
 ## 递归
 
-初始化好map后，首先定位分隔符的范围 对于11106，分隔符将字符串分割为 [0, d] 和 (d, len(str)-1]
-d属于[0,len(str)-1), 左闭右开
+初始化好map后，首先定位分隔符的范围 对于11106，分隔符将字符串分割为 [0, d] 和 (d, subLen(str)-1]
+d属于[0,subLen(str)-1), 左闭右开
 
 ```go
 func numDecodings(s string) int {
-	length := len(s)
+	length := subLen(s)
 	if length == 0 {
 		return 1
 	}
@@ -64,7 +64,7 @@ func numDecodings(s string) int {
 	if v, exists := backup[s]; exists {
 		return v
 	}
-	length := len(s)
+	length := subLen(s)
 	if length == 0 {
 		return 1
 	}

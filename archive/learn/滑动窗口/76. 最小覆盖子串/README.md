@@ -47,10 +47,10 @@ EBA -> BA -> BAN -> BANC
 之前就想到用一个map记录下,key是t中的字符,value是t中的对应字符出现的次数,当进行扩容时,发现在map中存在,就对其值进行-1,用另外一个count来记录当前窗口包含t中字符的数量.
 另外对于额外的重复出现的字符,会使得map中对应的value为负数,这个用另外一个变量记录下来
 
-那么对应的窗口缩容的条件就是 count == len(t) || repeatCount > 0 || window[0] not in map
+那么对应的窗口缩容的条件就是 count == subLen(t) || repeatCount > 0 || window[0] not in map
 
 测试的过程发现对窗口进行缩容时会有 窗口长度变为0的情况 因此内部判断要特殊处理下这种情况
 
 测试又发现这个case出错 aaaaaaaaaaaabbbbbcdd
 原因是字符b的数量超级多,导致窗口缩容将开头的a给缩掉了,因此这个窗口缩容条件改为
-count == len(t) || (repeatCount > 0 && windos[0] not in map)
+count == subLen(t) || (repeatCount > 0 && windos[0] not in map)

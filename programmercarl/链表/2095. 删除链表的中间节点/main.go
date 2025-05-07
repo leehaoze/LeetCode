@@ -13,11 +13,11 @@ func deleteMiddle(head *ListNode) *ListNode {
 	fast, slow := cur, cur
 	length := 0
 	slowIdx := 0
-	for cur != nil {
+	for fast.Next != nil {
 		fast = fast.Next
 		length++
 
-		for slowIdx+1 < length/2 {
+		for slowIdx < length/2 {
 			slow = slow.Next
 			slowIdx++
 		}

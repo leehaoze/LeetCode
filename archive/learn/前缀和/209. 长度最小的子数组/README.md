@@ -31,7 +31,7 @@ O(n2)的时间复杂度
 看错题目了，题目要的是 >= target的长度最小的连续子数组
 
 ---
-二分查找，因为preSum数组是有序(递增)的，因此我们遍历preSum时，可以通过二分查找 大于`preSum[i] - target`的值是否在 `preSum[i ~ len(nums)]`之间存在,我们用二分查找这个区间，查找一个大于等于
+二分查找，因为preSum数组是有序(递增)的，因此我们遍历preSum时，可以通过二分查找 大于`preSum[i] - target`的值是否在 `preSum[i ~ subLen(nums)]`之间存在,我们用二分查找这个区间，查找一个大于等于
 `preSum[i] - target`的值的位置
 
 !! 只要看到有序 就要思考是不是可以用二分简化
@@ -39,7 +39,7 @@ O(n2)的时间复杂度
 ---
 滑动窗口. 这种思路比较清晰，代码写起来也是很有意思，用两个while循环来实现窗口的扩大和缩小
 ```go
-for end < len(nums) {
+for end < subLen(nums) {
 	sum += nums[end]
 	for sum >= target {
 		if ret > end-start+1 {

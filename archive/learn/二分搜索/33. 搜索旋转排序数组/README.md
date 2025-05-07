@@ -21,7 +21,7 @@
 
 ```go
 func search(nums []int, target int) int {
-	left, right := 0, len(nums)-1
+	left, right := 0, subLen(nums)-1
 	for left <= right {
 		mid := left + (right-left)/2
 		fmt.Printf("left: %v  right: %v mid:%v\n", left, right, mid)

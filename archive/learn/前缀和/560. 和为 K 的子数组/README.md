@@ -12,8 +12,8 @@
 ---
 
 ```go
-for i := 0; i < len(preSum); i++ {
-    for j := i + 1; j < len(preSum); j++ {
+for i := 0; i < subLen(preSum); i++ {
+    for j := i + 1; j < subLen(preSum); j++ {
         if preSum[j]-preSum[i] == k {
             count++
         }
@@ -21,10 +21,10 @@ for i := 0; i < len(preSum); i++ {
 }
 ```
 
-遍历前缀和数组的过程如上，这是求解 i～len(preSum)区间有没有合法的j 满足 `preSum[j] - preSum[i] == k`。 我们也可以修改这个区间为 `0~i`，这样遍历的是经过的区间
+遍历前缀和数组的过程如上，这是求解 i～subLen(preSum)区间有没有合法的j 满足 `preSum[j] - preSum[i] == k`。 我们也可以修改这个区间为 `0~i`，这样遍历的是经过的区间
 
 ```go
-for i := 1; i < len(preSum); i++ {
+for i := 1; i < subLen(preSum); i++ {
     for j := i-1; j >= 0; j -- {
 		if preSum[i] - preSum[j] == k {
 			count++
@@ -40,7 +40,7 @@ for i := 1; i < len(preSum); i++ {
 count := 0
 valMap := make(map[int]int)
 valMap[0] = 1
-for i := 0; i < len(nums); i++ {
+for i := 0; i < subLen(nums); i++ {
 	preSum[i+1] = preSum[i] + nums[i]
 	valMap[preSum[i+1]]++
 	count += valMap[perSum[i+1]-k]

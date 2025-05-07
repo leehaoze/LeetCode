@@ -29,8 +29,8 @@
 ![](http://image.leehaoze.com/20211213152916_DtOE1N_Screenshot.png)
 ```go
 func productExceptSelf(nums []int) []int {
-	ret := make([]int, len(nums))
-	for i := 0; i < len(nums); i++ {
+	ret := make([]int, subLen(nums))
+	for i := 0; i < subLen(nums); i++ {
 		// 初始化 当前值
 		ret[i] = 1
 		for j := 0; j < i; j++ {
